@@ -1,5 +1,7 @@
 package com.silab.vinicius.entity;
 
+import com.silab.vinicius.entity.task.Task;
+
 import javax.persistence.*;
 
 /**

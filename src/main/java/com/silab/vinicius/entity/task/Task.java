@@ -1,4 +1,7 @@
-package com.silab.vinicius.entity;
+package com.silab.vinicius.entity.task;
+
+import com.silab.vinicius.entity.SubTask;
+import com.silab.vinicius.entity.TaskCategory;
 
 import javax.persistence.*;
 import java.util.List;
@@ -13,17 +16,21 @@ public class Task {
     @Column(name = "TASK_ID")
     @GeneratedValue
     private long id;
+    @Column(nullable = false)
     private String title;
-    private String priority;
-    private String category;
+    private TaskPriority priority;
+    @ManyToOne
+    @JoinColumn(name = "TASK_CATEGORY_ID")
+    private TaskCategory category;
     private String description;
     private String createdAt;
     private String doneAt;
 
+
     @OneToMany(mappedBy = "task", cascade = CascadeType.ALL)
     private List<SubTask> subTasks;
 
-    public Task(String title, String priority, String category, String description, String createdAt, String doneAt) {
+    public Task(String title, TaskPriority priority, TaskCategory category, String description, String createdAt, String doneAt) {
         this.title = title;
         this.priority = priority;
         this.category = category;
@@ -51,19 +58,19 @@ public class Task {
         this.title = title;
     }
 
-    public String getPriority() {
+    public TaskPriority getPriority() {
         return priority;
     }
 
-    public void setPriority(String priority) {
+    public void setPriority(TaskPriority priority) {
         this.priority = priority;
     }
 
-    public String getCategory() {
+    public TaskCategory getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(TaskCategory category) {
         this.category = category;
     }
 

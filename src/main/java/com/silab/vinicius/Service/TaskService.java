@@ -1,7 +1,7 @@
 package com.silab.vinicius.Service;
 
 import com.silab.vinicius.dao.TaskDao;
-import com.silab.vinicius.entity.Task;
+import com.silab.vinicius.entity.task.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
