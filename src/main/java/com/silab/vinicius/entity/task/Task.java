@@ -2,6 +2,7 @@ package com.silab.vinicius.entity.task;
 
 import com.silab.vinicius.entity.SubTask;
 import com.silab.vinicius.entity.TaskCategory;
+import com.silab.vinicius.entity.TaskList;
 
 import javax.persistence.*;
 import java.util.List;
@@ -25,6 +26,9 @@ public class Task {
     private String description;
     private String createdAt;
     private String doneAt;
+    @ManyToOne
+    @JoinColumn(name = "TASK_LIST_ID")
+    private TaskList taskList;
 
 
     @OneToMany(mappedBy = "task", cascade = CascadeType.ALL)

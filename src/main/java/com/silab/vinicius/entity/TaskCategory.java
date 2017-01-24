@@ -20,7 +20,7 @@ public class TaskCategory {
 
 
     @OneToMany(targetEntity = Task.class, mappedBy = "category", cascade = CascadeType.ALL)
-    List<Task> tasks;
+    private List<Task> tasks;
 
     public TaskCategory(String name, String color) {
         this.name = name;
