@@ -16,6 +16,7 @@ import java.util.Collection;
  * Created by viniagostini on 23/01/2017.
  */
 @RestController
+@CrossOrigin()
 @RequestMapping(value = "/tasklists")
 public class TaskListController {
 
