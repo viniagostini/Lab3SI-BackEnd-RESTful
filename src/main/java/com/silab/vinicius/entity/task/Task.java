@@ -109,4 +109,8 @@ public class Task {
     public void setSubTasks(List<SubTask> subTasks) {
         this.subTasks = subTasks;
     }
+
+    public void setTaskList(TaskList taskList) {
+        this.taskList = taskList;
+    }
 }
