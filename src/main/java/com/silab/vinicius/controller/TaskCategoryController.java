@@ -16,7 +16,7 @@ import java.util.Collection;
  * Created by viniagostini on 23/01/2017.
  */
 @RestController
-@CrossOrigin()
+@CrossOrigin(origins = "*")
 @RequestMapping(value = "/taskcategories")
 public class TaskCategoryController {
     @Autowired
@@ -43,6 +43,7 @@ public class TaskCategoryController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<TaskCategory> getTaskCategoryById(@PathVariable("id") long id){
+        System.out.println("PASSOU AQUI!!!!!!!!!!!");
         TaskCategory response = taskCategoryService.getTaskCategoryById(id);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
@@ -50,6 +51,7 @@ public class TaskCategoryController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<TaskCategory> removeTaskCategory(@PathVariable("id") long id){
+        System.out.println("ENTROU NO DELETE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         boolean response = taskCategoryService.removeTaskCategory(id);
         HttpStatus status = (response) ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
         return new ResponseEntity<>(status);
