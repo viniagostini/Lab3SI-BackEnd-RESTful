@@ -17,30 +17,34 @@ public class Task {
     @Column(name = "TASK_ID")
     @GeneratedValue
     private long id;
+
     @Column(nullable = false)
     private String title;
+
+    @Enumerated(EnumType.STRING)
     private TaskPriority priority;
+
     @ManyToOne
     @JoinColumn(name = "TASK_CATEGORY_ID")
     private TaskCategory category;
-    private String description;
-    private String createdAt;
-    private String doneAt;
+
     @ManyToOne
     @JoinColumn(name = "TASK_LIST_ID")
     private TaskList taskList;
 
-
     @OneToMany(mappedBy = "task", cascade = CascadeType.ALL)
     private List<SubTask> subTasks;
 
-    public Task(String title, TaskPriority priority, TaskCategory category, String description, String createdAt, String doneAt) {
+    private String description;
+    private String createdAt;
+    private boolean isDone;
+
+    public Task(String title, TaskPriority priority, TaskCategory category, String description, String createdAt) {
         this.title = title;
         this.priority = priority;
         this.category = category;
         this.description = description;
         this.createdAt = createdAt;
-        this.doneAt = doneAt;
     }
 
     public Task() {
@@ -71,6 +75,7 @@ public class Task {
     }
 
     public TaskCategory getCategory() {
+        category.setTasks(null);
         return category;
     }
 
@@ -94,12 +99,12 @@ public class Task {
         this.createdAt = createdAt;
     }
 
-    public String getDoneAt() {
-        return doneAt;
+    public boolean isDone() {
+        return isDone;
     }
 
-    public void setDoneAt(String doneAt) {
-        this.doneAt = doneAt;
+    public void setDone(boolean done) {
+        isDone = done;
     }
 
     public List<SubTask> getSubTasks() {

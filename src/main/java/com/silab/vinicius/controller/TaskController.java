@@ -16,42 +16,46 @@ import java.util.Collection;
 @RestController
 @CrossOrigin()
 @RequestMapping(value = "/tasks")
-public class TaskController {
+public class TaskController implements Crud<Task>{
 
     @Autowired
     private TaskService taskService;
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Task> createTask(@RequestBody Task task){
+    public ResponseEntity<Task> create(@RequestBody Task task){
         taskService.createTask(task);
         return new ResponseEntity<>(task, HttpStatus.OK);
     }
 
-
     @RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Task> updateTask(@RequestBody Task task){
+    public ResponseEntity<Task> update(@RequestBody Task task){
         Task response = taskService.updateTask(task);
         return new ResponseEntity<>(response,HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<Collection<Task>> getAllTasks(){
+    public ResponseEntity<Collection<Task>> getAll(){
         Collection<Task> response = taskService.getAllTasks();
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<Task> getTaskById(@PathVariable("id") long id){
+    public ResponseEntity<Task> getById(@PathVariable("id") long id){
         Task response = taskService.getTaskById(id);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<Task> removeTask(@PathVariable("id") long id){
+    public ResponseEntity<Task> removeById(@PathVariable("id") long id){
         boolean response = taskService.removeTask(id);
         HttpStatus status = (response) ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
         return new ResponseEntity<>(status);
+    }
+
+    @RequestMapping(method = RequestMethod.DELETE)
+    public ResponseEntity<Task> removeAll(){
+        taskService.removeAllTasks();
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 }

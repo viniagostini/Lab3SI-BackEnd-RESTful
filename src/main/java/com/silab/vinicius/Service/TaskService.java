@@ -40,4 +40,7 @@ public class TaskService {
         return result;
     }
 
+    public void removeAllTasks() {
+        taskDao.deleteAll();
+    }
 }

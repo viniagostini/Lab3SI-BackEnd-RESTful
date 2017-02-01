@@ -18,43 +18,48 @@ import java.util.Collection;
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping(value = "/taskcategories")
-public class TaskCategoryController {
+public class TaskCategoryController implements Crud<TaskCategory>{
     @Autowired
     private TaskCategoryService taskCategoryService;
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<TaskCategory> createTaskCategory(@RequestBody TaskCategory taskCategory){
+    public ResponseEntity<TaskCategory> create(@RequestBody TaskCategory taskCategory){
         taskCategoryService.createTaskCategory(taskCategory);
         return new ResponseEntity<>(taskCategory, HttpStatus.OK);
     }
 
 
     @RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<TaskCategory> updateTaskCategory(@RequestBody TaskCategory taskCategory){
+    public ResponseEntity<TaskCategory> update(@RequestBody TaskCategory taskCategory){
         TaskCategory response = taskCategoryService.updateTaskCategory(taskCategory);
         return new ResponseEntity<>(response,HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<Collection<TaskCategory>> getAllTaskCategories(){
+    public ResponseEntity<Collection<TaskCategory>> getAll(){
         Collection<TaskCategory> response = taskCategoryService.getAllTaskCategories();
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<TaskCategory> getTaskCategoryById(@PathVariable("id") long id){
-        System.out.println("PASSOU AQUI!!!!!!!!!!!");
+    public ResponseEntity<TaskCategory> getById(@PathVariable("id") long id){
         TaskCategory response = taskCategoryService.getTaskCategoryById(id);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<TaskCategory> removeTaskCategory(@PathVariable("id") long id){
-        System.out.println("ENTROU NO DELETE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+    public ResponseEntity<TaskCategory> removeById(@PathVariable("id") long id){
         boolean response = taskCategoryService.removeTaskCategory(id);
         HttpStatus status = (response) ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
         return new ResponseEntity<>(status);
     }
+
+    @RequestMapping(method = RequestMethod.DELETE)
+    public ResponseEntity<TaskCategory> removeAll(){
+        taskCategoryService.removeAllTaskCategories();
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
 
 }

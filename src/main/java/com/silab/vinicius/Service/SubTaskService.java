@@ -39,4 +39,8 @@ public class SubTaskService {
         return result;
     }
 
+    public void removeAllSubTasks() {
+        subTaskDao.deleteAll();
+    }
+
 }

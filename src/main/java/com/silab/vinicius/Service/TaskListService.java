@@ -40,5 +40,8 @@ public class TaskListService {
         return result;
     }
 
+    public void removeAllTaskLists(){
+        taskListDao.deleteAll();
+    }
 
 }
