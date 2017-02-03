@@ -10,16 +10,16 @@ import java.util.Collection;
 
 public interface Crud<T> {
 
-    public ResponseEntity<T> create(T t);
+    ResponseEntity<T> create(T t);
 
-    public ResponseEntity<Collection<T>> getAll();
+    ResponseEntity<Collection<T>> getAll();
 
-    public ResponseEntity<T> getById(long id);
+    ResponseEntity<T> getById(long id);
 
-    public ResponseEntity<T> update(T t);
+    ResponseEntity<T> update(T t);
 
-    public ResponseEntity<T> removeById(long id);
+    ResponseEntity<T> removeById(long id);
 
-    public ResponseEntity<T> removeAll();
+    ResponseEntity<T> removeAll();
 
 }

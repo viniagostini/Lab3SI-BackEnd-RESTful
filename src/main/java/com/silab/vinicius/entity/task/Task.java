@@ -39,12 +39,13 @@ public class Task {
     private String createdAt;
     private boolean isDone;
 
-    public Task(String title, TaskPriority priority, TaskCategory category, String description, String createdAt) {
+    public Task(String title, TaskPriority priority, TaskCategory category, String description, String createdAt, boolean isDone) {
         this.title = title;
         this.priority = priority;
         this.category = category;
         this.description = description;
         this.createdAt = createdAt;
+        this.isDone = isDone;
     }
 
     public Task() {
