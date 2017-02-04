@@ -63,7 +63,10 @@ public class SubTask {
         this.done = done;
     }
 
-
+    public Task getTask() {
+        task.setSubTasks(null);
+        return task;
+    }
 
     public void setTask(Task task) {
         this.task = task;
