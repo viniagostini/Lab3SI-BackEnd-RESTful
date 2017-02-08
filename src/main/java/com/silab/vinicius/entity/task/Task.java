@@ -119,4 +119,10 @@ public class Task {
     public void setTaskList(TaskList taskList) {
         this.taskList = taskList;
     }
+
+    public TaskList getTaskList() {
+        taskList.setTasks(null);
+        return taskList;
+    }
+
 }
