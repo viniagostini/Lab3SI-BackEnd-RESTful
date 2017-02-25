@@ -14,7 +14,7 @@ import java.util.Collection;
  * Created by viniagostini on 22/01/2017.
  */
 @RestController
-@CrossOrigin()
+@CrossOrigin(origins = "*")
 @RequestMapping(value = "/subtasks")
 public class SubTaskController implements Crud<SubTask>{
 

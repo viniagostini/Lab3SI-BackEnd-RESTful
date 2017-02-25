@@ -14,7 +14,7 @@ import java.util.Collection;
  * Created by viniagostini on 23/01/2017.
  */
 @RestController
-@CrossOrigin()
+@CrossOrigin(origins = "*")
 @RequestMapping(value = "/tasks")
 public class TaskController implements Crud<Task>{
 
